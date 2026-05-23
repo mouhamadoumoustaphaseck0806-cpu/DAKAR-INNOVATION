@@ -24,7 +24,7 @@ export async function POST(req: NextRequest) {
       data: {
         contenu,
         signalementId,
-        auteurId: (session.user as any).id,
+        auteurId: (session.user as { id: string }).id,
       },
     })
 

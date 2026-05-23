@@ -17,7 +17,7 @@ export async function POST(req: NextRequest) {
     const existingVote = await prisma.vote.findUnique({
       where: {
         userId_signalementId: {
-          userId: (session.user as any).id,
+          userId: (session.user as { id: string }).id,
           signalementId,
         },
       },
@@ -33,7 +33,7 @@ export async function POST(req: NextRequest) {
       // Add vote
       await prisma.vote.create({
         data: {
-          userId: (session.user as any).id,
+          userId: (session.user as { id: string }).id,
           signalementId,
         },
       })

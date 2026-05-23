@@ -1,0 +1,65 @@
+﻿
+> dakar-innov-days@0.1.0 lint
+> eslint
+
+
+C:\Users\HP\Desktop\dakar innovation\dakar-innov-days\app\api\auth\register\route.ts
+  52:12  warning  'err' is defined but never used  @typescript-eslint/no-unused-vars
+
+C:\Users\HP\Desktop\dakar innovation\dakar-innov-days\app\api\signalements\[id]\commentaires\route.ts
+   2:10  warning  'getServerSession' is defined but never used  @typescript-eslint/no-unused-vars
+   4:10  warning  'authOptions' is defined but never used       @typescript-eslint/no-unused-vars
+  20:12  warning  'error' is defined but never used             @typescript-eslint/no-unused-vars
+
+C:\Users\HP\Desktop\dakar innovation\dakar-innov-days\app\api\signalements\[id]\route.ts
+   2:10  warning  'getServerSession' is defined but never used  @typescript-eslint/no-unused-vars
+   4:10  warning  'authOptions' is defined but never used       @typescript-eslint/no-unused-vars
+  26:12  warning  'error' is defined but never used             @typescript-eslint/no-unused-vars
+
+C:\Users\HP\Desktop\dakar innovation\dakar-innov-days\app\api\signalements\[id]\votes\route.ts
+  29:12  warning  'error' is defined but never used  @typescript-eslint/no-unused-vars
+
+C:\Users\HP\Desktop\dakar innovation\dakar-innov-days\app\api\signalements\route.ts
+   8:11  warning  'session' is assigned a value but never used  @typescript-eslint/no-unused-vars
+  30:12  warning  'error' is defined but never used             @typescript-eslint/no-unused-vars
+
+C:\Users\HP\Desktop\dakar innovation\dakar-innov-days\app\api\stats\admin\route.ts
+   6:27  warning  'req' is defined but never used    @typescript-eslint/no-unused-vars
+  48:12  warning  'error' is defined but never used  @typescript-eslint/no-unused-vars
+
+C:\Users\HP\Desktop\dakar innovation\dakar-innov-days\app\api\stats\route.ts
+   4:27  warning  'req' is defined but never used    @typescript-eslint/no-unused-vars
+  31:12  warning  'error' is defined but never used  @typescript-eslint/no-unused-vars
+
+C:\Users\HP\Desktop\dakar innovation\dakar-innov-days\app\auth\login\page.tsx
+  6:8  warning  'Link' is defined but never used  @typescript-eslint/no-unused-vars
+
+C:\Users\HP\Desktop\dakar innovation\dakar-innov-days\app\auth\register\page.tsx
+  49:14  warning  'err' is defined but never used  @typescript-eslint/no-unused-vars
+
+C:\Users\HP\Desktop\dakar innovation\dakar-innov-days\app\dashboard\page.tsx
+   7:84  warning  'Legend' is defined but never used                                                                         @typescript-eslint/no-unused-vars
+  46:6   warning  React Hook useEffect has a missing dependency: 'router'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+
+C:\Users\HP\Desktop\dakar innovation\dakar-innov-days\app\projets\[id]\page.tsx
+    3:42  warning  'ChangeEvent' is defined but never used                                                                              @typescript-eslint/no-unused-vars
+   71:6   warning  React Hook useEffect has a missing dependency: 'fetchSignalement'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+   91:14  warning  'error' is defined but never used                                                                                    @typescript-eslint/no-unused-vars
+  119:14  warning  'error' is defined but never used                                                                                    @typescript-eslint/no-unused-vars
+
+C:\Users\HP\Desktop\dakar innovation\dakar-innov-days\app\projets\page.tsx
+  55:6  warning  React Hook useEffect has a missing dependency: 'fetchSignalements'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+
+C:\Users\HP\Desktop\dakar innovation\dakar-innov-days\components\SignalementCard.tsx
+  3:10  warning  'useEffect' is defined but never used  @typescript-eslint/no-unused-vars
+  3:21  warning  'useState' is defined but never used   @typescript-eslint/no-unused-vars
+
+C:\Users\HP\Desktop\dakar innovation\dakar-innov-days\prisma.config.ts
+  1:1  warning  Assign object to a variable before exporting as module default  import/no-anonymous-default-export
+
+C:\Users\HP\Desktop\dakar innovation\dakar-innov-days\prisma\seed.ts
+  13:9  warning  'admin' is assigned a value but never used  @typescript-eslint/no-unused-vars
+  22:9  warning  'agent' is assigned a value but never used  @typescript-eslint/no-unused-vars
+
+Ô£û 28 problems (0 errors, 28 warnings)
+

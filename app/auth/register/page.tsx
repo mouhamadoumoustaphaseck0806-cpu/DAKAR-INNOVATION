@@ -55,7 +55,7 @@ export default function RegisterPage() {
 
   return (
     <div className="max-w-md mx-auto p-6">
-      <h1 className="text-2xl font-semibold mb-4">S'inscrire</h1>
+      <h1 className="text-2xl font-semibold mb-4">S&apos;inscrire</h1>
       <form onSubmit={handleSubmit} className="space-y-4" noValidate>
         <div>
           <label className="block text-sm">Nom</label>
@@ -76,7 +76,7 @@ export default function RegisterPage() {
         {errors.general && <div className="text-red-600">{errors.general}</div>}
 
         <button disabled={loading} className="w-full bg-blue-600 text-white p-2 rounded">
-          {loading ? 'Création...' : "S'inscrire"}
+          {loading ? 'Création...' : "S&apos;inscrire"}
         </button>
       </form>
     </div>

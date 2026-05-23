@@ -93,8 +93,9 @@ export default function SignalerPage() {
       const data = await response.json()
       setAlert({ type: 'success', message: 'Signalement créé avec succès!' })
       setTimeout(() => router.push(`/projets/${data.id}`), 1500)
-    } catch (error: any) {
-      setAlert({ type: 'error', message: error.message })
+    } catch (error) {
+      const msg = error instanceof Error ? error.message : String(error)
+      setAlert({ type: 'error', message: msg })
     } finally {
       setLoading(false)
     }

@@ -1,6 +1,7 @@
-'use client'
+ 'use client'
 
 import { useState, useEffect, FormEvent, ChangeEvent } from 'react'
+import { useParams } from 'next/navigation'
 import { useSession } from 'next-auth/react'
 import { Navbar } from '@/components/Navbar'
 import { Alert } from '@/components/Alert'
@@ -27,8 +28,10 @@ interface Commentaire {
   auteur: { name: string }
 }
 
-export default function ProjetDetailPage({ params }: { params: { id: string } }) {
+export default function ProjetDetailPage({ params }: { params?: { id?: string } }) {
   const { data: session } = useSession()
+  const routeParams = useParams() as { id?: string }
+  const id = routeParams?.id || params?.id
   const [signalement, setSignalement] = useState<Signalement | null>(null)
   const [commentaires, setCommentaires] = useState<Commentaire[]>([])
   const [hasVoted, setHasVoted] = useState(false)
@@ -37,15 +40,11 @@ export default function ProjetDetailPage({ params }: { params: { id: string } })
   const [comment, setComment] = useState('')
   const [submitting, setSubmitting] = useState(false)
 
-  useEffect(() => {
-    fetchSignalement()
-  }, [params.id])
-
-  const fetchSignalement = async () => {
+  async function fetchSignalement() {
     try {
       const [sigRes, commRes] = await Promise.all([
-        fetch(`/api/signalements/${params.id}`),
-        fetch(`/api/signalements/${params.id}/commentaires`),
+        fetch(`/api/signalements/${id}`),
+        fetch(`/api/signalements/${id}/commentaires`),
       ])
       
       const sigData = await sigRes.json()
@@ -55,7 +54,7 @@ export default function ProjetDetailPage({ params }: { params: { id: string } })
       setCommentaires(commData)
       
       if (session?.user) {
-        const votedRes = await fetch(`/api/signalements/${params.id}/votes`)
+        const votedRes = await fetch(`/api/signalements/${id}/votes`)
         const voted = await votedRes.json()
         setHasVoted(voted.hasVoted)
       }
@@ -65,6 +64,11 @@ export default function ProjetDetailPage({ params }: { params: { id: string } })
       setLoading(false)
     }
   }
+
+  useEffect(() => {
+    if (!id) return
+    ;(async () => { await fetchSignalement() })()
+  }, [id])
 
   const handleVote = async () => {
     if (!session) {
@@ -76,7 +80,7 @@ export default function ProjetDetailPage({ params }: { params: { id: string } })
       const res = await fetch(`/api/votes`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ signalementId: params.id }),
+        body: JSON.stringify({ signalementId: id }),
       })
 
       if (res.ok) {
@@ -103,7 +107,7 @@ export default function ProjetDetailPage({ params }: { params: { id: string } })
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           contenu: comment,
-          signalementId: params.id,
+          signalementId: id,
         }),
       })
 

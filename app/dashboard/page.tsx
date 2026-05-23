@@ -24,16 +24,7 @@ export default function DashboardPage() {
 
   const COLORS = ['#00853f', '#fdef42', '#e31b23', '#3b82f6', '#f97316', '#ec4899']
 
-  useEffect(() => {
-    if (session?.user?.role !== 'ADMIN') {
-      router.push('/')
-      return
-    }
-
-    fetchStats()
-  }, [session])
-
-  const fetchStats = async () => {
+  async function fetchStats() {
     try {
       const res = await fetch('/api/stats/admin')
       const data = await res.json()
@@ -44,6 +35,15 @@ export default function DashboardPage() {
       setLoading(false)
     }
   }
+
+  useEffect(() => {
+    if (session?.user?.role !== 'ADMIN') {
+      router.push('/')
+      return
+    }
+
+    ;(async () => { await fetchStats() })()
+  }, [session])
 
   if (loading) return <div className="min-h-screen flex items-center justify-center">Chargement...</div>
   if (!stats) return <div className="min-h-screen flex items-center justify-center">Erreur</div>

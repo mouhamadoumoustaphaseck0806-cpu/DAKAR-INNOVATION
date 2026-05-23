@@ -32,11 +32,7 @@ export default function ProjetsPage() {
     'VOIRIE', 'ECLAIRAGE', 'DECHETS', 'EAU', 'ESPACES_VERTS', 'SECURITE'
   ]
 
-  useEffect(() => {
-    fetchSignalements()
-  }, [filters])
-
-  const fetchSignalements = async () => {
+  async function fetchSignalements() {
     setLoading(true)
     const params = new URLSearchParams()
     if (filters.categorie !== 'ALL') params.append('categorie', filters.categorie)
@@ -53,6 +49,10 @@ export default function ProjetsPage() {
       setLoading(false)
     }
   }
+
+  useEffect(() => {
+    ;(async () => { await fetchSignalements() })()
+  }, [filters])
 
   return (
     <>

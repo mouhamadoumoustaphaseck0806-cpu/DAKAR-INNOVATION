@@ -12,7 +12,7 @@ export async function GET(req: NextRequest) {
     const quartier = searchParams.get('quartier')
     const statut = searchParams.get('statut')
 
-    const where: any = {}
+    const where: Record<string, unknown> = {}
     if (categorie && categorie !== 'ALL') where.categorie = categorie
     if (quartier && quartier !== 'ALL') where.quartier = quartier
     if (statut && statut !== 'ALL') where.statut = statut
@@ -57,7 +57,7 @@ export async function POST(req: NextRequest) {
         quartier,
         latitude,
         longitude,
-        auteurId: (session.user as any).id,
+        auteurId: (session.user as { id: string }).id,
       },
     })
 

@@ -6,7 +6,7 @@ import { authOptions } from '@/src/lib/auth'
 export async function GET(req: NextRequest) {
   try {
     const session = await getServerSession(authOptions)
-    if ((session?.user as any)?.role !== 'ADMIN') {
+    if ((session?.user as { role?: string })?.role !== 'ADMIN') {
       return NextResponse.json({ error: 'Non autorisé' }, { status: 403 })
     }
 
