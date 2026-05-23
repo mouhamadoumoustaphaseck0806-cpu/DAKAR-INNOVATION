@@ -1,26 +1,88 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+/* Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: #f8fafc; /* gray-50 */
+  color: #111827; /* gray-900 */
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
+
+/* Couleurs du Sénégal */
+:root {
+  --senegal-green: #00853f;
+  --senegal-yellow: #fdef42;
+  --senegal-red: #e31b23;
+}
+
+/* Buttons */
+.btn-primary {
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.5rem;
+  font-weight: 600;
+  color: #fff;
+  background-color: var(--senegal-green);
+  transition: all 200ms ease;
+}
+
+.btn-primary:hover {
+  box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+  filter: brightness(0.95);
+}
+
+.btn-secondary {
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.5rem;
+  font-weight: 600;
+  border: 2px solid var(--senegal-green);
+  color: var(--senegal-green);
+  background: transparent;
+  transition: background-color 200ms ease;
+}
+
+.btn-secondary:hover {
+  background-color: #ecfdf5; /* green-50 */
+}
+
+/* Card */
+.card {
+  background: #fff;
+  border-radius: 0.5rem;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+  padding: 1.5rem;
+  transition: box-shadow 200ms ease;
+}
+
+.card:hover { box-shadow: 0 8px 30px rgba(0,0,0,0.08); }
+
+/* Badges */
+.badge-category {
+  padding: 0.25rem 0.75rem;
+  border-radius: 9999px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #fff;
+  display: inline-block;
+}
+
+.badge-voirie { background-color: var(--senegal-green); }
+.badge-eclairage { background-color: #fbbf24; color: #111827; }
+.badge-dechets { background-color: #f97316; }
+.badge-eau { background-color: #3b82f6; }
+.badge-espaces-verts { background-color: var(--senegal-green); }
+.badge-securite { background-color: #ef4444; }
+
+/* Status */
+.status-en-attente { background-color: #fffbeb; color: #92400e; padding: 0.25rem 0.5rem; border-radius: 9999px; }
+.status-en-cours { background-color: #eff6ff; color: #1e40af; padding: 0.25rem 0.5rem; border-radius: 9999px; }
+.status-resolu { background-color: #ecfdf5; color: #065f46; padding: 0.25rem 0.5rem; border-radius: 9999px; }
+.status-rejete { background-color: #fff1f2; color: #981b1c; padding: 0.25rem 0.5rem; border-radius: 9999px; }

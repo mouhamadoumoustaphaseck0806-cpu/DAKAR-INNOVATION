@@ -1,0 +1,59 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = "file:./dev.db"
+}
+
+model User {
+  id            String         @id @default(cuid())
+  name          String?
+  email         String         @unique
+  password      String?
+  role          String         @default("CITOYEN")
+  createdAt     DateTime       @default(now())
+  signalements  Signalement[]
+  commentaires  Commentaire[]
+  votes         Vote[]
+}
+
+model Signalement {
+  id           String        @id @default(cuid())
+  titre        String
+  description  String
+  categorie    String
+  quartier     String
+  statut       String        @default("EN_ATTENTE")
+  imageUrl     String?
+  latitude     Float?
+  longitude    Float?
+  createdAt    DateTime      @default(now())
+  updatedAt    DateTime      @updatedAt
+  auteur       User          @relation(fields: [auteurId], references: [id])
+  auteurId     String
+  commentaires Commentaire[]
+  votes        Vote[]
+}
+
+model Commentaire {
+  id             String      @id @default(cuid())
+  contenu        String
+  createdAt      DateTime    @default(now())
+  auteur         User        @relation(fields: [auteurId], references: [id])
+  auteurId       String
+  signalement    Signalement @relation(fields: [signalementId], references: [id], onDelete: Cascade)
+  signalementId  String
+}
+
+model Vote {
+  id             String      @id @default(cuid())
+  createdAt      DateTime    @default(now())
+  user           User        @relation(fields: [userId], references: [id])
+  userId         String
+  signalement    Signalement @relation(fields: [signalementId], references: [id], onDelete: Cascade)
+  signalementId  String
+
+  @@unique([userId, signalementId])
+}

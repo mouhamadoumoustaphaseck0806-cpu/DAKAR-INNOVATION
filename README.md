@@ -1,36 +1,113 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🌍 Dakar Innovation Days - Plateforme Citoyenne
 
-## Getting Started
+Une plateforme web moderne permettant aux habitants de Dakar de signaler des problèmes urbains et de proposer des solutions innovantes à la Mairie de Dakar.
 
-First, run the development server:
+## ✨ Fonctionnalités
+
+- 📍 **Signalement géolocalisé** : Signalez les problèmes urbains avec localisation GPS
+- 🗳️ **Système de vote** : Soutenez les signalements les plus importants
+- 💬 **Commentaires** : Engagez-vous avec la communauté et partagez vos idées
+- 📊 **Dashboard admin** : Tableau de bord avec statistiques et gestion des signalements
+- 👥 **Rôles utilisateurs** : Citoyens, Agents techniques, Administrateurs
+- 🎨 **Design responsif** : Mobile-first et optimisé pour tous les appareils
+- 🏘️ **Filtrage par quartier** : 8 quartiers de Dakar supportés
+- 📈 **Catégorisation** : Voirie, Éclairage, Déchets, Eau, Espaces verts, Sécurité
+
+## 🛠️ Stack Technique
+
+- **Frontend** : Next.js 14, TypeScript, Tailwind CSS, React 19
+- **Backend** : API Routes Next.js
+- **Base de données** : Prisma ORM + SQLite
+- **Authentification** : NextAuth.js v4
+- **Graphiques** : Recharts
+- **UI Components** : Lucide React
+
+## 🚀 Démarrage rapide
 
 ```bash
+# 1. Installer les dépendances
+npm install
+
+# 2. Initialiser la base de données
+npm run db:push
+npm run db:seed
+
+# 3. Démarrer le serveur de développement
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Ouvrez [http://localhost:3000](http://localhost:3000)
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 📝 Utilisateurs de test
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+| Rôle | Email | Mot de passe |
+|------|-------|------------|
+| Citoyen | citoyen@test.sn | test123 |
+| Agent | agent@dakar.sn | agent123 |
+| Admin | admin@dakar.sn | admin123 |
 
-## Learn More
+## 📁 Structure du projet
 
-To learn more about Next.js, take a look at the following resources:
+```
+app/                    # Pages et API routes
+├── api/               # API endpoints
+├── signaler/          # Créer un signalement
+├── projets/           # Afficher les projets
+├── auth/login         # Connexion
+└── dashboard          # Admin dashboard
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+components/           # Composants réutilisables
+src/lib/             # Utilitaires (Prisma, Auth)
+prisma/              # Base de données
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## 🗄️ Base de données
 
-## Deploy on Vercel
+Les tables créées automatiquement :
+- **users** : Utilisateurs (CITOYEN, AGENT, ADMIN)
+- **signalements** : Problèmes urbains
+- **commentaires** : Commentaires sur les signalements
+- **votes** : Votes des utilisateurs
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## 🔐 Authentification
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+NextAuth.js v4 avec Credentials Provider
+
+⚠️ **Note** : Les mots de passe ne sont pas hashés en développement. Utilisez `bcryptjs` en production.
+
+## 📚 Scripts disponibles
+
+```bash
+npm run dev           # Démarrer en développement
+npm run build        # Build de production
+npm start            # Démarrer la production
+npm run db:push      # Synchroniser le schéma
+npm run db:seed      # Remplir avec les données de test
+```
+
+## 📋 Pages de l'application
+
+- `/` - Accueil avec statistiques
+- `/signaler` - Formulaire de signalement
+- `/projets` - Liste des projets avec filtres
+- `/projets/[id]` - Détail d'un projet
+- `/auth/login` - Connexion
+- `/dashboard` - Tableau de bord admin
+
+## 🐛 Résoudre les problèmes
+
+**Erreur de base de données ?**
+```bash
+rm prisma/dev.db
+npm run db:push
+npm run db:seed
+```
+
+**Port 3000 occupé ?**
+```bash
+npm run dev -- -p 3001
+```
+
+## 📄 Licence
+
+Créé pour le hackathon Dakar Innovation Days 2026
