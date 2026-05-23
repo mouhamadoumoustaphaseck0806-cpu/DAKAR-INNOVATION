@@ -1,6 +1,5 @@
 @import "tailwindcss";
 
-/* Reset */
 * {
   margin: 0;
   padding: 0;
@@ -12,9 +11,87 @@ html {
 }
 
 body {
-  background-color: #f8fafc; /* gray-50 */
-  color: #111827; /* gray-900 */
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
+  background-color: #edf6f4;
+  background-image:
+    radial-gradient(circle at 15% 18%, rgba(0, 133, 63, 0.16), transparent 21%),
+    radial-gradient(circle at 85% 12%, rgba(253, 239, 66, 0.14), transparent 17%),
+    radial-gradient(circle at 25% 85%, rgba(227, 49, 35, 0.12), transparent 16%),
+    linear-gradient(140deg, #eef9fa 0%, #f7fbf4 45%, #fffdf5 100%);
+  background-attachment: fixed;
+  color: #0f172a;
+  overflow-x: hidden;
+}
+
+@keyframes backgroundDrift {
+  0%, 100% {
+    transform: translate(0, 0) scale(1);
+    opacity: 0.82;
+  }
+  50% {
+    transform: translate(12px, -10px) scale(1.02);
+    opacity: 0.92;
+  }
+}
+
+@keyframes backgroundGlow {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 0.18;
+  }
+  50% {
+    transform: scale(1.05);
+    opacity: 0.28;
+  }
+}
+
+/* Animations */
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(2rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-1rem); }
+}
+
+.animate-slideUp {
+  animation: slideUp 0.8s ease-out forwards;
+}
+
+.animate-fadeIn {
+  animation: fadeIn 1.2s ease-in forwards;
+}
+
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+
+.animate-bg-drift {
+  animation: backgroundDrift 18s ease-in-out infinite;
+}
+
+.animate-bg-glow {
+  animation: backgroundGlow 12s ease-in-out infinite;
+}
+
+/* Gradients */
+.bg-hero {
+  background: linear-gradient(135deg, #00853f 0%, #00a84d 50%, #e31b23 100%);
+  position: relative;
+  overflow: hidden;
 }
 
 /* Couleurs du Sénégal */
@@ -22,6 +99,50 @@ body {
   --senegal-green: #00853f;
   --senegal-yellow: #fdef42;
   --senegal-red: #e31b23;
+}
+
+.bg-hero-gradient {
+  background: linear-gradient(135deg, rgba(0, 133, 63, 0.95), rgba(255, 209, 73, 0.9), rgba(227, 49, 35, 0.9));
+}
+
+.hero-glow {
+  position: absolute;
+  width: 20rem;
+  height: 20rem;
+  border-radius: 9999px;
+  filter: blur(4rem);
+  opacity: 0.65;
+  animation: float 12s ease-in-out infinite;
+  background: radial-gradient(circle, rgba(255,255,255,0.45), transparent 65%);
+}
+
+.hero-glow:nth-child(2) {
+  width: 18rem;
+  height: 18rem;
+  animation-duration: 14s;
+  background: radial-gradient(circle, rgba(253, 239, 66, 0.5), transparent 65%);
+}
+
+.hero-glow:nth-child(3) {
+  width: 16rem;
+  height: 16rem;
+  animation-duration: 10s;
+  background: radial-gradient(circle, rgba(227, 49, 35, 0.45), transparent 65%);
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px) scale(1); }
+  50% { transform: translateY(-1.5rem) scale(1.05); }
+}
+
+.btn-primary,
+.btn-secondary {
+  transition: transform 200ms ease, box-shadow 200ms ease, background-color 200ms ease;
+}
+
+.btn-primary:hover,
+.btn-secondary:hover {
+  transform: translateY(-1px);
 }
 
 /* Buttons */

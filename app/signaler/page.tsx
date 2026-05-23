@@ -104,10 +104,10 @@ export default function SignalerPage() {
   return (
     <>
       <Navbar />
-      <div className="min-h-screen py-12 bg-gray-100">
+      <div className="min-h-screen py-20">
         <div className="max-w-2xl mx-auto px-4">
-          <h1 className="text-4xl font-bold mb-2">Signaler un problème</h1>
-          <p className="text-gray-600 mb-8">Aidez la Mairie de Dakar en signalant les problèmes urbains</p>
+          <h1 className="text-5xl font-black tracking-tight mb-3">Nouveau signalement</h1>
+          <p className="text-slate-500 font-medium mb-12">Partagez votre observation pour améliorer Dakar.</p>
 
           {alert && (
             <Alert
@@ -117,9 +117,9 @@ export default function SignalerPage() {
             />
           )}
 
-          <form onSubmit={handleSubmit} className="card space-y-6">
+          <form onSubmit={handleSubmit} className="bg-white/80 backdrop-blur-2xl border border-white p-10 md:p-16 rounded-[3rem] shadow-2xl shadow-slate-200/50 space-y-10 transition-all hover:shadow-green-500/5">
             <div>
-              <label className="block text-sm font-semibold mb-2">Titre *</label>
+              <label className="block text-xs font-black text-slate-400 uppercase tracking-widest mb-4 ml-1">1. Titre du problème</label>
               <input
                 type="text"
                 name="titre"
@@ -127,8 +127,8 @@ export default function SignalerPage() {
                 onChange={handleChange}
                 required
                 maxLength={100}
-                className="w-full border-2 border-gray-300 rounded-lg p-3 focus:border-green-600 outline-none"
-                placeholder="Décrivez le problème en peu de mots"
+                className="w-full bg-slate-50/50 border-0 border-b-2 border-slate-100 rounded-none p-4 text-xl font-bold focus:ring-0 focus:border-green-500 outline-none transition-all placeholder:text-slate-300"
+                placeholder="Que se passe-t-il ?"
               />
             </div>
 
@@ -141,8 +141,8 @@ export default function SignalerPage() {
                 required
                 maxLength={500}
                 rows={5}
-                className="w-full border-2 border-gray-300 rounded-lg p-3 focus:border-green-600 outline-none resize-none"
-                placeholder="Donnez plus de détails sur le problème..."
+                className="w-full bg-white border border-slate-200 rounded-2xl p-4 focus:ring-4 focus:ring-senegal-green/10 focus:border-senegal-green outline-none resize-none transition-all shadow-sm"
+                placeholder="Précisez les détails importants ici..."
               />
             </div>
 
@@ -153,7 +153,7 @@ export default function SignalerPage() {
                   name="categorie"
                   value={form.categorie}
                   onChange={handleChange}
-                  className="w-full border-2 border-gray-300 rounded-lg p-3 focus:border-green-600 outline-none"
+                  className="w-full bg-white border border-slate-200 rounded-2xl p-4 focus:ring-4 focus:ring-senegal-green/10 focus:border-senegal-green outline-none transition-all shadow-sm appearance-none"
                 >
                   {CATEGORIES.map((cat) => (
                     <option key={cat.value} value={cat.value}>
@@ -169,7 +169,7 @@ export default function SignalerPage() {
                   name="quartier"
                   value={form.quartier}
                   onChange={handleChange}
-                  className="w-full border-2 border-gray-300 rounded-lg p-3 focus:border-green-600 outline-none"
+                  className="w-full bg-white border border-slate-200 rounded-2xl p-4 focus:ring-4 focus:ring-senegal-green/10 focus:border-senegal-green outline-none transition-all shadow-sm appearance-none"
                 >
                   {QUARTIERS.map((q) => (
                     <option key={q} value={q}>
@@ -184,7 +184,7 @@ export default function SignalerPage() {
               <button
                 type="button"
                 onClick={handleGetLocation}
-                className="mb-3 btn-secondary w-full"
+                className="mb-3 w-full py-4 bg-slate-50 border border-slate-200 rounded-2xl font-bold hover:bg-slate-100 transition-all flex items-center justify-center gap-2"
               >
                 📍 Obtenir ma localisation
               </button>
@@ -198,7 +198,7 @@ export default function SignalerPage() {
             <button
               type="submit"
               disabled={loading}
-              className="btn-primary w-full disabled:opacity-50"
+              className="w-full py-5 bg-slate-900 text-white rounded-2xl font-bold hover:bg-slate-800 transition-all shadow-xl disabled:opacity-50 hover:scale-[1.02] active:scale-[0.98]"
             >
               {loading ? 'Envoi en cours...' : 'Envoyer le signalement'}
             </button>
