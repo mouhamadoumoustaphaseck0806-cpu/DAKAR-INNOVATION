@@ -10,12 +10,13 @@ Une plateforme web moderne permettant aux habitants de Dakar de signaler des pro
 - 📊 **Dashboard admin** : Tableau de bord avec statistiques et gestion des signalements
 - 👥 **Rôles utilisateurs** : Citoyens, Agents techniques, Administrateurs
 - 🎨 **Design responsif** : Mobile-first et optimisé pour tous les appareils
+- ✨ **Background animé** : Arrière-plan coloré et subtil pour une meilleure lisibilité
 - 🏘️ **Filtrage par quartier** : 8 quartiers de Dakar supportés
 - 📈 **Catégorisation** : Voirie, Éclairage, Déchets, Eau, Espaces verts, Sécurité
 
 ## 🛠️ Stack Technique
 
-- **Frontend** : Next.js 14, TypeScript, Tailwind CSS, React 19
+- **Frontend** : Next.js 16.2.6, TypeScript, Tailwind CSS, React 19
 - **Backend** : API Routes Next.js
 - **Base de données** : Prisma ORM + SQLite
 - **Authentification** : NextAuth.js v4
@@ -36,7 +37,7 @@ npm run db:seed
 npm run dev
 ```
 
-Ouvrez [http://localhost:3000](http://localhost:3000)
+Ouvrez [http://localhost:3000](http://localhost:3000) pour visualiser l'application avec le nouveau background animé.
 
 ## 📝 Utilisateurs de test
 
