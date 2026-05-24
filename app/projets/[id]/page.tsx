@@ -1,7 +1,6 @@
- 'use client'
+'use client'
 
-import { useState, useEffect, FormEvent, ChangeEvent } from 'react'
-import { useParams } from 'next/navigation'
+import { useState, useEffect, FormEvent, use } from 'react'
 import { useSession } from 'next-auth/react'
 import { Navbar } from '@/components/Navbar'
 import { Alert } from '@/components/Alert'
@@ -28,10 +27,19 @@ interface Commentaire {
   auteur: { name: string }
 }
 
-export default function ProjetDetailPage({ params }: { params?: { id?: string } }) {
+const CATEGORIE_LABELS: Record<string, string> = {
+  VOIRIE: '🛣️ Voirie',
+  ECLAIRAGE: '💡 Éclairage',
+  DECHETS: '🗑️ Déchets',
+  EAU: '💧 Eau',
+  ESPACES_VERTS: '🌿 Espaces verts',
+  SECURITE: '🔒 Sécurité',
+}
+
+export default function ProjetDetailPage({ params }: { params: Promise<{ id: string }> }) {
   const { data: session } = useSession()
-  const routeParams = useParams() as { id?: string }
-  const id = routeParams?.id || params?.id
+  const resolvedParams = use(params)
+  const id = resolvedParams.id
   const [signalement, setSignalement] = useState<Signalement | null>(null)
   const [commentaires, setCommentaires] = useState<Commentaire[]>([])
   const [hasVoted, setHasVoted] = useState(false)
@@ -68,7 +76,7 @@ export default function ProjetDetailPage({ params }: { params?: { id?: string } 
   useEffect(() => {
     if (!id) return
     ;(async () => { await fetchSignalement() })()
-  }, [id])
+  }, [id, session])
 
   const handleVote = async () => {
     if (!session) {
@@ -126,19 +134,10 @@ export default function ProjetDetailPage({ params }: { params?: { id?: string } 
   if (loading) return <div className="min-h-screen flex items-center justify-center">Chargement...</div>
   if (!signalement) return <div className="min-h-screen flex items-center justify-center">Non trouvé</div>
 
-  const categorieLabels: Record<string, string> = {
-    VOIRIE: '🛣️ Voirie',
-    ECLAIRAGE: '💡 Éclairage',
-    DECHETS: '🗑️ Déchets',
-    EAU: '💧 Eau',
-    ESPACES_VERTS: '🌿 Espaces verts',
-    SECURITE: '🔒 Sécurité',
-  }
-
   return (
     <>
       <Navbar />
-      <div className="min-h-screen bg-gray-100 py-12">
+      <div className="min-h-screen bg-transparent py-12">
         <div className="max-w-4xl mx-auto px-4">
           <Link href="/projets" className="text-green-600 hover:underline mb-6 inline-block">
             ← Retour aux projets
@@ -158,8 +157,8 @@ export default function ProjetDetailPage({ params }: { params?: { id?: string } 
               <div>
                 <h1 className="text-4xl font-bold mb-2">{signalement.titre}</h1>
                 <div className="flex gap-3 flex-wrap">
-                  <span className="badge-category" style={{ backgroundColor: '#00853F' }}>
-                    {categorieLabels[signalement.categorie]}
+                  <span className={`badge-category badge-${signalement.categorie.toLowerCase().replace('_', '-')}`}>
+                    {CATEGORIE_LABELS[signalement.categorie]}
                   </span>
                   <span className={`px-3 py-1 rounded-full status-${signalement.statut.toLowerCase().replace('_', '-')}`}>
                     {signalement.statut.replace('_', ' ')}

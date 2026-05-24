@@ -46,7 +46,7 @@ export default function LoginPage() {
   return (
     <>
       <Navbar />
-      <div className="min-h-screen bg-linear-to-br from-green-50 to-red-50 flex items-center justify-center py-12">
+      <div className="min-h-screen bg-transparent flex items-center justify-center py-12">
         <div className="card max-w-md w-full mx-4">
           <h1 className="text-3xl font-bold mb-2 text-center">Connexion</h1>
           <p className="text-center text-gray-600 mb-8">

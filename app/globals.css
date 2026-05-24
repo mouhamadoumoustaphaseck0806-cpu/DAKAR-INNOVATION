@@ -1,5 +1,11 @@
 @import "tailwindcss";
 
+@theme {
+  --color-senegal-green: #00853f;
+  --color-senegal-yellow: #fdef42;
+  --color-senegal-red: #e31b23;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -12,12 +18,7 @@ html {
 
 body {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
-  background-color: #edf6f4;
-  background-image:
-    radial-gradient(circle at 15% 18%, rgba(0, 133, 63, 0.16), transparent 21%),
-    radial-gradient(circle at 85% 12%, rgba(253, 239, 66, 0.14), transparent 17%),
-    radial-gradient(circle at 25% 85%, rgba(227, 49, 35, 0.12), transparent 16%),
-    linear-gradient(140deg, #eef9fa 0%, #f7fbf4 45%, #fffdf5 100%);
+  background-color: transparent;
   background-attachment: fixed;
   color: #0f172a;
   overflow-x: hidden;
